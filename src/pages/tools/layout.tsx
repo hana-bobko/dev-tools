@@ -1,6 +1,7 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-
+import React, { ReactNode } from "react";
+import Image from "next/image";
 const user = {
     name: "Tom Cook",
     email: "tom@example.com",
@@ -19,7 +20,7 @@ const userNavigation = [
     { name: "Sign out", href: "#" },
 ];
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");
 }
 
@@ -90,7 +91,7 @@ function Header() {
                         <div className="border-t border-gray-700 pb-3 pt-4">
                             <div className="flex items-center px-5">
                                 <div className="flex-shrink-0">
-                                    <img alt="" src={user.imageUrl} className="h-10 w-10 rounded-full" />
+                                    <Image alt="" src={user.imageUrl} className="h-10 w-10 rounded-full" />
                                 </div>
                                 <div className="ml-3">
                                     <div className="text-base font-medium leading-none text-white">{user.name}</div>
@@ -144,7 +145,11 @@ const Sidebar = () => {
     );
 };
 
-export default function Layout({ children }) {
+interface LayoutProps {
+    children: ReactNode;
+}
+
+export default function Layout({ children }: LayoutProps) {
     return (
         <>
             <Header />
