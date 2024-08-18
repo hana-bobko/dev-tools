@@ -1,5 +1,5 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, BellIcon, XMarkIcon, FilmIcon, IdentificationIcon } from "@heroicons/react/24/outline";
 import React, { ReactNode } from "react";
 import Image from "next/image";
 const user = {
@@ -27,14 +27,6 @@ function classNames(...classes: string[]) {
 function Header() {
     return (
         <>
-            {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
             <div className="h-20 w-full  fixed">
                 <Disclosure as="nav" className="bg-gray-800">
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -127,20 +119,32 @@ function Header() {
 }
 const Sidebar = () => {
     return (
-        <div className="h-screen mt-9 w-64 bg-gray-800 text-white flex flex-col">
-            <div className="p-4 font-bold text-3xl"></div>
+        <div className="h-screen mt-9 bg-gray-800 text-white flex flex-col">
+            <div className="p-4 w-60 font-bold text-3xl"></div>
             <nav className="flex-1 text-sm">
                 <ul className="mt-6">
-                    <li className="pl-4 py-2 hover:bg-gray-700 cursor-pointer">Animações CSS</li>
-                    <li className="pl-4 py-2 hover:bg-gray-700 cursor-pointer">Gerador de CPF (em breve)</li>
-                    <li className="pl-4 py-2 hover:bg-gray-700 cursor-pointer">Gerador de CNPJ (em breve)</li>
-                    <li className="pl-4 py-2 hover:bg-gray-700 cursor-pointer">Gerador de Nome (em breve)</li>
-                    <li className="pl-4 py-2 hover:bg-gray-700 cursor-pointer">Paleta de cores (em breve)</li>
+                    <div className="flex w-full align-middle pl-4 py-2 gap-3 hover:bg-gray-700 cursor-pointer">
+                        <FilmIcon className=" h-6 w-6" />
+                        <li className="flex">Animações CSS</li>
+                    </div>
+                    <div className="flex w-full align-middle pl-4 py-2 gap-3 hover:bg-gray-700 cursor-pointer">
+                        <IdentificationIcon className=" h-6 w-6" />
+                        <li className="flex">Gerador de CPF (em breve)</li>
+                    </div>
+                    <div className="flex w-full align-middle pl-4 py-2 gap-3 hover:bg-gray-700 cursor-pointer">
+                        <IdentificationIcon className=" h-6 w-6" />
+                        <li className="flex">Gerador de CNPJ (em breve)</li>
+                    </div>
+                    <div className="flex w-full align-middle pl-4 py-2 gap-3 hover:bg-gray-700 cursor-pointer">
+                        <IdentificationIcon className=" h-6 w-6" />
+                        <li className="flex">Gerador de Nome (em breve)</li>
+                    </div>
+                    <div className="flex w-full align-middle pl-4 py-2 gap-3 hover:bg-gray-700 cursor-pointer">
+                        <IdentificationIcon className=" h-6 w-6" />
+                        <li className="flex">Paleta de cores (em breve)</li>
+                    </div>
                 </ul>
             </nav>
-            <div className="p-4 border-t border-gray-700">
-                <button className="w-full text-left px-4 py-2 hover:bg-gray-700">Nos apoie</button>
-            </div>
         </div>
     );
 };
@@ -153,7 +157,7 @@ export default function Layout({ children }: LayoutProps) {
     return (
         <>
             <Header />
-            <div className="flex">
+            <div className="flex w-screen">
                 <Sidebar />
                 <main className="flex w-full h-screen mt-9 bg-gray-800">{children}</main>
             </div>
