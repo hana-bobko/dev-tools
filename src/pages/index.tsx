@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default function App() {
     return (
         <div className="absolute w-full h-full isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
@@ -24,12 +25,12 @@ export default function App() {
                     Transforme seu código, seus projetos e sua carreira com a nossa ajuda. Dê o próximo passo no seu desenvolvimento.
                 </p>
                 <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-center">
-                    <link
+                    <Link
                         href="/tools"
                         className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                     >
                         Comece aqui
-                    </link>
+                    </Link>
 
                     <a href="#" className="text-sm font-semibold leading-6 text-white">
                         Nos apoie<span aria-hidden="true">→</span>
