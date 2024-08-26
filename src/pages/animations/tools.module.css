@@ -12,7 +12,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: lightslategray;
+    background-color: rgb(49, 46, 129, 1);
 }
 
 /*Transition 1. Grow. We only want it to grow once, and only on hover, so use a transition. User can see element is interactive with cursor. Simple transformation of scale. Without duration it's a bit abrupt, so we can slow it down instead.'*/
@@ -27,7 +27,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: lightslategray;
+    background-color: rgb(49, 46, 129, 1);
 }
 
 /*Transform can scale, rotate, translate and skew. "It modifies the coordinate space of the 'CSS Visual Formatting Model'"*/
@@ -50,7 +50,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: lightslategray;
+    background-color: rgb(49, 46, 129, 1);
 }
 
 /* ease in starts slow and ends fast. ease out is fast to start and slows at the end. Ease (shorthand for ease-in-out) starts and ends fast but slows in the middle. Linear is standard.*/
@@ -71,7 +71,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: lightslategray;
+    background-color: rgb(49, 46, 129, 1);
 }
 
 .boxSpaceOut:hover {
@@ -89,7 +89,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: lightslategray;
+    background-color: rgb(49, 46, 129, 1);
 }
 
 .boxResize:hover {
@@ -111,7 +111,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: lightslategray;
+    background-color: rgb(49, 46, 129, 1);
 }
 
 @keyframes pulse {
@@ -134,7 +134,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: lightslategray;
+    background-color: rgb(49, 46, 129, 1);
 }
 
 .boxRotate:hover {
@@ -160,7 +160,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: lightslategray;
+    background-color: rgb(49, 46, 129, 1);
 }
 
 .slideOut:hover {
@@ -191,13 +191,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: lightslategray;
+    background-color: rgb(49, 46, 129, 1);
     animation: colorChange 5s ease infinite alternate;
 }
 
 @keyframes colorChange {
     0% {
-        background-color: lightslategray;
+        background-color: rgb(49, 46, 129, 1);
     }
     50.0% {
         background-color: #efd1ff;
@@ -211,8 +211,8 @@
   Loading spinner, big fat border even if rounded still responds to border-top property. Just move it around.*/
 .loader {
     margin: 25px 0px 0px 25px;
-    border: 16px solid lightgray;
-    border-top: 16px solid #493d4f;
+    border: 16px solid rgb(49, 46, 129, 1);
+    border-top: 16px solid #ddd0ff;
     border-radius: 50%;
     width: 120px;
     height: 120px;
