@@ -255,20 +255,16 @@ export default function Tools() {
 
     return (
         <Layout>
-            <div className="bg-gray-800 mt-9 w-full overflow-auto ">
-                <div className="flex-col bg-white rounded-md  overflow-y-scroll h-full">
-                    <div className="flex flex-col h-36 items-center overflow-y-hidden justify-between ">
-                        <div className={style?.wrapper}>
-                            {bashCss.map((item) => (
-                                <div key={item?.title} onClick={() => setBash(item?.code)} className={item?.className}>
-                                    {item?.title}
-                                </div>
-                            ))}
+            <div className="flex flex-col h-36 items-center overflow-y-hidden justify-between ">
+                <div className={style?.wrapper}>
+                    {bashCss.map((item) => (
+                        <div key={item?.title} onClick={() => setBash(item?.code)} className={item?.className}>
+                            {item?.title}
                         </div>
-                    </div>
-                    <CodeSnippet code={bash} />
+                    ))}
                 </div>
             </div>
+            <CodeSnippet code={bash} />
         </Layout>
     );
 }

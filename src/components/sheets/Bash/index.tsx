@@ -28,7 +28,7 @@ const Bash = ({
     };
 
     return (
-        <div className="relative bg-gray-900 text-white font-mono rounded-lg shadow-lg p-6 mb-4 mx-6">
+        <div className=" bg-gray-900  text-white font-mono rounded-lg shadow-lg p-6 mb-4 mx-6">
             <div className="flex justify-between items-center mb-4">
                 <span className="text-sm text-gray-400">
                     {customMessage} {selectedLanguage}

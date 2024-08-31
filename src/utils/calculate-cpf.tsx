@@ -1,4 +1,4 @@
-export default function calculateDev(): string {
+export default function calculateCpf(): string {
     const cpf = [];
     for (let i = 0; i < 9; i++) {
         cpf.push(Math.floor(Math.random() * 10));

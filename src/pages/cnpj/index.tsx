@@ -2,12 +2,14 @@ import Layout from "@/layouts/main";
 import React, { useState } from "react";
 import Bash from "@/components/sheets/Bash";
 import { PaperClipIcon, CheckIcon } from "@heroicons/react/24/outline";
-import calculateCpf from "@/utils/calculate-cpf";
+import calculateDev from "@/utils/calculate-cpf";
+import calculateCnpj from "@/utils/calculate-cnpj";
 export default function Cpf() {
     const [text, setText] = useState("");
     const [copied, setCopied] = useState(false);
     async function generate() {
-        const result = calculateCpf();
+        const result = calculateCnpj();
+        console.log("passei na função");
         setText(result);
     }
     async function handleCopy() {
@@ -17,59 +19,80 @@ export default function Cpf() {
         setTimeout(() => setCopied(false), 2000);
     }
     const codeTypescript = `
-function generateCpf(): string {
-    const cpf = [];
-    for (let i = 0; i < 9; i++) {
-        cpf.push(Math.floor(Math.random() * 10));
+function generateCpnj(): string {
+    while (true) {
+        const cnpj = [];
+        for (let i = 0; i < 12; i++) {
+            cnpj.push(Math.floor(Math.random() * 10));
+        }
+        const dv1 = calculateDv(cnpj, [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]);
+        cnpj.push(dv1);
+        const dv2 = calculateDv(cnpj, [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]);
+        cnpj.push(dv2);
+
+        if (isValidCnpj(cnpj)) {
+            return cnpj.join("").replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5");
+        }
     }
-
-    cpf.push(calculateDv(cpf, 10));
-    cpf.push(calculateDv(cpf, 11));
-
-    return cpf.join("").replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
 }
 
-function calculateDv(cpf: number[], weight: number): number {
+function isValidCnpj(cnpj: number[]): boolean {
+    const calculatedDv1 = calculateDv(cnpj.slice(0, 12), [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]);
+    const calculatedDv2 = calculateDv(cnpj.slice(0, 13), [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]);
+
+    return cnpj[12] === calculatedDv1 && cnpj[13] === calculatedDv2;
+}
+
+function calculateDv(cnpj: number[], weights: number[]): number {
     let sum = 0;
-    for (let i = 0; i < cpf.length; i++) {
-        sum += cpf[i] * (weight - i);
+    for (let i = 0; i < cnpj.length; i++) {
+        sum += cnpj[i] * weights[i];
     }
     let rest = sum % 11;
     if (rest < 2) {
-        rest = 0;
+        return 0;
     } else {
-        rest = 11 - rest;
+        return 11 - rest;
     }
-    return rest;
 }
 `;
     const codeJavascript = `
-function generateCpf() {
-    const cpf = [];
-    for (let i = 0; i < 9; i++) {
-        cpf.push(Math.floor(Math.random() * 10));
+function calculateCnpj() {
+    while (true) {
+        const cnpj = [];
+        for (let i = 0; i < 12; i++) {
+            cnpj.push(Math.floor(Math.random() * 10));
+        }
+        const dv1 = calculateDv(cnpj, [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]);
+        cnpj.push(dv1);
+        const dv2 = calculateDv(cnpj, [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]);
+        cnpj.push(dv2);
+
+        if (isValidCnpj(cnpj)) {
+            return cnpj.join("").replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5");
+        }
     }
-
-    cpf.push(calculateDv(cpf, 10));
-    cpf.push(calculateDv(cpf, 11));
-
-    return cpf.join("").replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
 }
 
-function calculateDv(cpf, weight) {
+function isValidCnpj(cnpj) {
+    const calculatedDv1 = calculateDv(cnpj.slice(0, 12), [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]);
+    const calculatedDv2 = calculateDv(cnpj.slice(0, 13), [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]);
+
+    return cnpj[12] === calculatedDv1 && cnpj[13] === calculatedDv2;
+}
+
+function calculateDv(cnpj, weights) {
     let sum = 0;
-    for (let i = 0; i < cpf.length; i++) {
-        sum += cpf[i] * (weight - i);
+    for (let i = 0; i < cnpj.length; i++) {
+        sum += cnpj[i] * weights[i];
     }
     let rest = sum % 11;
     if (rest < 2) {
-        rest = 0;
+        return 0;
     } else {
-        rest = 11 - rest;
+        return 11 - rest;
     }
-    return rest;
 }
-
     `;
     return (
         <Layout>
@@ -79,18 +102,18 @@ function calculateDv(cpf, weight) {
                     type="submit"
                     className=" h-11 mt-6 rounded-md bg-indigo-900 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                 >
-                    Gerar CPF
+                    Gerar CNPJ
                 </button>
                 <div className="flex-col justify-center align-baseline">
-                    <p className="my-1 text-sm text-neutral-900">CPF gerado</p>
+                    <p className="my-1 text-sm text-neutral-900">CNPJ gerado</p>
                     <input
-                        id="cpf-gerado"
+                        id="cnpj-gerado"
                         name="cpf"
                         type="text"
                         required
                         readOnly
                         value={text}
-                        placeholder="CPF gerado..."
+                        placeholder="CNPJ gerado..."
                         autoComplete=""
                         className="min-w-0 text-neutral-900 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                     />
