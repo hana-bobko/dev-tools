@@ -1,7 +1,30 @@
 import Link from "next/link";
+import CardWImage from "@/components/cards/CardWImage";
+import styles from "./teste.module.css";
 export default function App() {
+    const cardData = [
+        {
+            id: 1,
+            title: "Card 1",
+            description: "This is card 1",
+            image: "https://picsum.photos/200/300",
+        },
+        {
+            id: 2,
+            title: "Card 2",
+            description: "This is card 2",
+            image: "https://picsum.photos/200/301",
+        },
+        {
+            id: 3,
+            title: "Card 3",
+            description: "This is card 3",
+            image: "https://picsum.photos/200/302",
+        },
+    ];
+
     return (
-        <div className="absolute w-full h-full isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+        <div className="absolute w-full h-full flex-col justify-center items-center isolate overflow-auto bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
             <svg
                 viewBox="0 0 1024 1024"
                 aria-hidden="true"
@@ -15,6 +38,7 @@ export default function App() {
                     </radialGradient>
                 </defs>
             </svg>
+
             <div className="mx-auto w-full text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-center">
                 <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
                     Criadas por desenvolvedores, para desenvolvedores.
@@ -36,6 +60,19 @@ export default function App() {
                         Nos apoie<span aria-hidden="true">→</span>
                     </a>
                 </div>
+            </div>
+
+            <div className={`${styles["fade-scroll"]} flex-col overflow-auto h-54 w-2/4 justify-center items-center my-3`}>
+                {cardData.map((card) => (
+                    <CardWImage
+                        key={card.id}
+                        image={card.image}
+                        title={card.title}
+                        description={card.description}
+                        buttonText="Conhecer"
+                        onClick={() => console.log(`Item: ${card.title}`)}
+                    />
+                ))}
             </div>
         </div>
     );

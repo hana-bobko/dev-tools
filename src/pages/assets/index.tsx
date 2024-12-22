@@ -1,0 +1,73 @@
+import Link from "next/link";
+import styles from "../styles.module.css";
+export default function App() {
+    return (
+        <div className=" grow-0 py-8 z-50 absolute w-full h-full isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+            <div
+                className=""
+                style={{
+                    backgroundPosition: "center",
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    paddingLeft: 10,
+                    paddingRight: 10,
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    overflowY: "scroll",
+                    scrollbarWidth: "none",
+                }}
+            >
+                <svg
+                    viewBox="0 0 1024 1024"
+                    aria-hidden="true"
+                    className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0"
+                >
+                    <circle r={512} cx={512} cy={512} fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fillOpacity="0.7" />
+                    <defs>
+                        <radialGradient id="759c1415-0410-454c-8f7c-9a820de03641">
+                            <stop stopColor="#591bc4" />
+                            <stop offset={1} stopColor="#2145e8" />
+                        </radialGradient>
+                    </defs>
+                </svg>
+                <div
+                    className={styles.slider}
+                    style={{
+                        display: "flex",
+                        flexDirection: "column-reverse",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        marginTop: 20,
+                        width: "100%",
+                    }}
+                >
+                    {" "}
+                    {/*className="mx-auto w-full text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-center">*/}
+                    <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                        Conheça nossas ferramentas
+                        <br />
+                        Cada semana uma novidade.
+                    </h2>
+                    <p className="mt-6 text-lg leading-8 text-gray-300">
+                        Transforme seu código, seus projetos e sua carreira com a nossa ajuda. Dê o próximo passo no seu desenvolvimento.
+                    </p>
+                    <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-center">
+                        <Link
+                            href="/animations"
+                            className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                        >
+                            Comece aqui
+                        </Link>
+
+                        <a href="#" className="text-sm font-semibold leading-6 text-white">
+                            Nos apoie<span aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
