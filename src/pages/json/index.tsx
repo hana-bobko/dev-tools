@@ -3,24 +3,30 @@ import React, { useState } from "react";
 import Layout from "@/layouts/main";
 import { faker } from "@faker-js/faker";
 
-const Json = () => {
-    const [numItems, setNumItems] = useState(2); // Número de itens do JSON
-    const [jsonOutput, setJsonOutput] = useState([]);
+type JsonItem = {
+    id: number;
+    nome: string;
+    email: string;
+    ativo: boolean;
+    nascimento: string;
+};
 
-    // Função para gerar o JSON com dados aleatórios
+const Json = () => {
+    const [numItems, setNumItems] = useState(2);
+    const [jsonOutput, setJsonOutput] = useState<JsonItem[]>([]);
+
     const generateJson = () => {
         const generatedData = Array.from({ length: numItems }, (_, index) => ({
             id: index + 1,
             nome: faker.name.firstName() + " " + faker.name.lastName(),
             email: faker.internet.email(),
             ativo: faker.datatype.boolean(),
-            nascimento: faker.date.past(30, new Date()).toISOString().split("T")[0], // Exemplo de data no formato YYYY-MM-DD
+            nascimento: faker.date.past({ years: 30 }).toISOString().split("T")[0],
         }));
         console.log(generatedData);
         setJsonOutput(generatedData);
     };
 
-    // Função para copiar o JSON gerado para a área de transferência
     const copyToClipboard = () => {
         const jsonString = JSON.stringify(jsonOutput, null, 2);
         navigator.clipboard.writeText(jsonString).then(() => {
@@ -31,7 +37,7 @@ const Json = () => {
     return (
         <Layout>
             <div className="mt-6 mx-6 flex-col max-h-screen min max-w-screen-3xl py-3 gap-x-4 justify-start align-baseline">
-                <p class="font-mono text-xl">Gerador de JSON</p>
+                <p className="font-mono text-xl">Gerador de JSON</p>
                 <div className="controls flex w-full justify-evenly p-6">
                     <div className="controls flex-col w-full justify-evenly">
                         <label>
