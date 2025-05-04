@@ -49,21 +49,20 @@ export default function Tools() {
         {
             className: style?.boxGrow,
             code: `
-            .boxGrow {
-                cursor: pointer;
-                margin: 25px 0px 0px 25px;
-                height: 100px;
-                width: 100px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background-color: lightslategray;
-            }
-                        
-            .boxGrow:hover {
-                transform: scale(1.1);
-                transition: 0.4s;
-            }
+      .boxGrow {
+        cursor: pointer;
+        height: 100px;
+        width: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: lightslategray;
+      }
+      
+      .boxGrow:hover {
+        transform: scale(1.1);
+        transition: 0.4s;
+      }
             `,
             title: `grow`,
         },
@@ -255,7 +254,7 @@ export default function Tools() {
 
     return (
         <Layout>
-            <div className="flex flex-col h-36 items-center overflow-y-hidden justify-between ">
+            <div className="flex mt-24 flex-col items-center overflow-y-auto">
                 <div className={style?.wrapper}>
                     {bashCss.map((item) => (
                         <div key={item?.title} onClick={() => setBash(item?.code)} className={item?.className}>

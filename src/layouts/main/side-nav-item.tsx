@@ -1,12 +1,6 @@
 import { Bars3Icon, BellIcon, XMarkIcon, FilmIcon, IdentificationIcon, Bars3CenterLeftIcon, PaintBrushIcon } from "@heroicons/react/24/outline";
-
+import { Braces, Palette, KeyRound } from "lucide-react";
 export const sideNavItem = [
-    {
-        id: 0,
-        title: "Animações CSS",
-        path: "/animations/",
-        icon: <FilmIcon className="h-6 w-6" />,
-    },
     {
         id: 1,
         title: "Gerador de CPF",
@@ -21,19 +15,26 @@ export const sideNavItem = [
     },
     {
         id: 3,
-        title: "Gerador de Texto (em breve)",
-        path: "/cpf",
-        icon: <Bars3CenterLeftIcon className="h-6 w-6" />,
+        title: "Gerador de JSON",
+        path: "/json",
+        icon: <Braces className="h-6 w-6" />,
     },
     {
         id: 4,
-        title: "Paleta de cores (em breve)",
-        path: "/cpf",
-        icon: <PaintBrushIcon className="h-6 w-6" />,
+        title: "Gerador de Senhas",
+        path: "/passwords",
+        icon: <KeyRound className="h-6 w-6" />,
+    },
+    {
+        id: 5,
+        title: "Animações CSS",
+        path: "/animations/",
+        icon: <FilmIcon className="h-6 w-6" />,
     },
 ];
 export const headerItem = [
     { name: "Ferramentas de desenvolvedor", href: "#", current: true },
+    { name: "Página inicial", href: "/", current: false },
     { name: "Nosso time", href: "#", current: false },
     { name: "Projetos", href: "#", current: false },
     { name: "Quero apoiar", href: "#", current: false },

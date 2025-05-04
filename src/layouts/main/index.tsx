@@ -9,10 +9,10 @@ export default function Layout({ children }: LayoutProps) {
     return (
         <>
             <Header />
-            <div className="flex w-full">
+            <div className="flex w-full h-screen">
                 <SideNav />
-                <main className="flex w-full h-screen mt-9 bg-gray-800">
-                    <div className="bg-white rounded-lg  mt-9 mx-9 w-full overflow-auto ">{children}</div>
+                <main className="flex w-full h-full bg-gray-800">
+                    <div className="bg-white rounded-lg h-auto  mx-9 pt-12 w-full overflow-auto ">{children}</div>
                 </main>
             </div>
         </>

@@ -73,7 +73,7 @@ function calculateDv(cpf, weight) {
     `;
     return (
         <Layout>
-            <div className="mt-6 flex max-w-md py-3 gap-x-4 justify-center align-baseline">
+            <div className="mt-16 flex max-w-md py-3 gap-x-4 justify-center align-baseline">
                 <button
                     onClick={() => generate()}
                     type="submit"
