@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
+import { Variants, TargetAndTransition } from "framer-motion";
 interface CarouselItem {
     id: string;
     icon: React.ReactNode;
@@ -14,7 +14,7 @@ interface CarouselProps {
     items: CarouselItem[];
     visibleCount?: number; // default: 3
 }
-
+type Direction = "left" | "right";
 export const Carousel: React.FC<CarouselProps> = ({ items, visibleCount = 3 }) => {
     const [startIndex, setStartIndex] = useState(0);
     const [direction, setDirection] = useState<"left" | "right">("right");
@@ -34,8 +34,12 @@ export const Carousel: React.FC<CarouselProps> = ({ items, visibleCount = 3 }) =
         return items[index];
     });
 
-    const variants = {
-        enter: (dir: "left" | "right") => ({
+    const variants: {
+        enter: (dir: Direction) => TargetAndTransition;
+        center: TargetAndTransition;
+        exit: (dir: Direction) => TargetAndTransition;
+    } = {
+        enter: (dir) => ({
             x: dir === "right" ? 300 : -300,
             opacity: 0,
             position: "absolute",
@@ -45,7 +49,7 @@ export const Carousel: React.FC<CarouselProps> = ({ items, visibleCount = 3 }) =
             opacity: 1,
             position: "static",
         },
-        exit: (dir: "left" | "right") => ({
+        exit: (dir) => ({
             x: dir === "right" ? -300 : 300,
             opacity: 0,
             position: "absolute",
