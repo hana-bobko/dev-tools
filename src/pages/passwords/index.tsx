@@ -43,7 +43,7 @@ const PasswordGenerator = () => {
     return (
         <Layout>
             <div className="mt-24 mx-6 max-w-xl">
-                <p class="font-mono text-xl mb-4">Gerador de Senhas Seguras</p>
+                <p className="font-mono text-xl mb-4">Gerador de Senhas Seguras</p>
                 <div className="mb-4">
                     <label className="block mb-1">Tamanho da senha:</label>
                     <input
